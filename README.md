@@ -4,7 +4,7 @@
 JSTE is a NodeJS-Module for rendering data in static HTML
 
 
-## Example JSON
+## Example Page (JSON)
 
 ```json
 {
@@ -14,10 +14,9 @@ JSTE is a NodeJS-Module for rendering data in static HTML
 }
 ```
 
-## Example HTML
+## Example Template (HTML)
 
-```html
-{
+```html 
     <!DOCTYPE html>
 <html lang="de">
 
