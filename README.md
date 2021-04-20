@@ -35,3 +35,6 @@ JSTE is a NodeJS-Module for rendering data in static HTML
 
 </html>
 ```
+
+## special constants:
+-   ```_TEMPLATE_``` -> Defines the path to the temp file
