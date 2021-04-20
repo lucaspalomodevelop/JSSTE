@@ -1,0 +1,23 @@
+{
+  "name": "jste",
+  "version": "1.0.0",
+  "description": "JSTF is a NodeJS-Module for rendering data in static HTML",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": " node .\\src\\index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucaspalomodevelop/JSTE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucaspalomodevelop/JSTE/issues"
+  },
+  "homepage": "https://github.com/lucaspalomodevelop/JSTE#readme",
+  "dependencies": {
+    "jsdom": "^16.5.3"
+  }
+}
