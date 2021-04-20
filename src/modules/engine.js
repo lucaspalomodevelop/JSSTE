@@ -23,7 +23,7 @@ app.render = function(pagecode, templatecode) {
     for (var i in pagecode) {
         var value = undefined;
 
-        if(i.startsWith("_"))
+        if(new RegExp("\d*_([A-Z])\w*_",i))
         continue;
 
           value = pagecode[i].toString();
