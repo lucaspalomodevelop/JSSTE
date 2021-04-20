@@ -19,35 +19,17 @@ app.render = function(pagecode, templatecode) {
     //TODO
     //if(templatecode === null)
 
+
     for (var i in pagecode) {
-          var value = undefined;
+        var value = undefined;
 
-          if(i.startsWith("_"))
-          continue;
+        if(i.startsWith("_"))
+        continue;
 
-            try {
+          value = pagecode[i].toString();
+          templatecode = templatecode.replace("<["+i+"]>",value)
+       }
 
-                if(i.startsWith("{"))
-                {
-                    var args = [];
-
-                    pagecode[i].args.forEach(element => {
-                        args.push(pagecode[element]);
-                    });
-                    //args.push()
-                    value = new Function(pagecode[i].args, pagecode[i].body);
-                }
-                else
-                {
-                    value = pagecode[i].toString();
-                }
-
-            } catch (error) {
-                value = error;
-            }
-            templatecode = templatecode.replace("<["+i+"]>",value)
-         }
-  //  }
   return templatecode;
 }
 
