@@ -1,4 +1,4 @@
 
-# JSTF version 2
+# JSTE version 2
 
-JSTF is a NodeJS-Module for rendering data in static HTML
+JSTE is a NodeJS-Module for rendering data in static HTML
