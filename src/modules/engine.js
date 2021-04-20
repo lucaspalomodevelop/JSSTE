@@ -3,14 +3,6 @@ const path = require("path");
 var appdir = path.join(__dirname, '..');
 var app = {}
 
-
-app.config = {
-
-    "templatePath":__dirname+"\\templates",
-    "pagePath":__dirname+"\\pages"
-    
-    };
-
 app.render = function(pagecode, templatecode) {
     result = "";
 
