@@ -3,21 +3,16 @@ const path = require("path");
 var appdir = path.join(__dirname, '..');
 var app = {}
 
-
-app.config = {
-
-    "templatePath":__dirname+"\\templates",
-    "pagePath":__dirname+"\\pages"
-    
-    };
-
 app.render = function(pagecode, templatecode) {
     result = "";
 
     pagecode = JSON.parse(pagecode);
 
     //TODO
-    //if(templatecode === null)
+    if(templatecode === null)
+    {
+      templatecode == fs.readdirSync(pagecode["_TEMPLATE_"]);
+    }
 
 
     for (var i in pagecode) {
