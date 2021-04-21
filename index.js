@@ -1,6 +1,6 @@
 
 var engine = require("./src/modules/engine")
-
+var app = {};
 app.config = {
 
   "templatePath":__dirname+"\\src\\templates",
@@ -14,8 +14,6 @@ app.render = engine.render(pagecode,templatecode);
 // {
 //   return app.pages.get(pageName)["_TEMPLATE_"]
 // }
-
-
 
 module.exports = app;
 

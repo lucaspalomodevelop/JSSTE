@@ -6,6 +6,7 @@ var app = {}
 app.render = function(pagecode, templatecode) {
     result = "";
 
+    if(!pagecode == JSON)
     pagecode = JSON.parse(pagecode);
 
     //TODO
