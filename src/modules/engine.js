@@ -9,16 +9,17 @@ app.render = function(pagecode, templatecode) {
     pagecode = JSON.parse(pagecode);
 
     //TODO
-    if(templatecode === null)
+    if(templatecode === null || templatecode == undefined)
     {
-      templatecode == fs.readdirSync(pagecode["_TEMPLATE_"]);
+      templatecode == fs.readFileSync(pagecode["_TEMPLATE_"]+".html");
     }
 
 
     for (var i in pagecode) {
         var value = undefined;
 
-        if(new RegExp("\d*_([A-Z])\w*_",i))
+        var re = new RegExp("\d*_([A-Z])\w*_");
+        if(re.test(i))
         continue;
 
           value = pagecode[i].toString();
