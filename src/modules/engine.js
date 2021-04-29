@@ -3,6 +3,14 @@ const path = require("path");
 var appdir = path.join(__dirname, '..');
 var app = {}
 
+function escapeRegExp(string) {
+  return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
+}
+
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+}
+
 app.render = function(pagecode, templatecode) {
     result = "";
 
@@ -24,7 +32,7 @@ app.render = function(pagecode, templatecode) {
         continue;
 
           value = pagecode[i].toString();
-          templatecode = templatecode.replace("<["+i+"]>",value)
+          templatecode = replaceAll(templatecode,"<["+i+"]>",value);
        }
 
   return templatecode;
