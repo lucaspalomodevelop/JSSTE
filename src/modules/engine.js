@@ -35,7 +35,7 @@ app.render = function(pagecode, templatecode) {
           templatecode = replaceAll(templatecode,"<["+i+"]>",value);
        }
 
-  return templatecode;
+  return templatecode.replace(new RegExp(/\d*<\[([A-Z])\w*\]>/g),"");;
 }
 
 
