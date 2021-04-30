@@ -8,12 +8,12 @@ app.config = {
   
   };
 
-app.render = engine.render(pagecode,templatecode);
+app.render = engine.render;
 
-app.getTemplateNameFromPage = function(pageName)
-{
-  return app.pages.get(pageName)["_TEMPLATE_"]
-}
+// app.getTemplateNameFromPage = function(pageName)
+// {
+//   return app.pages.get(pageName)["_TEMPLATE_"]
+// }
 
 
 
