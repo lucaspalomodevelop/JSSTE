@@ -1,14 +1,11 @@
-
-var engine = require("./src/modules/engine")
+var engine = require("./src/modules/engine");
 var app = {};
 app.config = {
+  templatePath: __dirname + "\\src\\templates",
+  pagePath: __dirname + "\\src\\pages",
+};
 
-  "templatePath":__dirname+"\\src\\templates",
-  "pagePath":__dirname+"\\src\\pages"
-  
-  };
-
-app.render = engine.render(pagecode,templatecode);
+app.render = engine.render(pagecode, templatecode);
 
 // app.getTemplateNameFromPage = function(pageName)
 // {
@@ -16,4 +13,3 @@ app.render = engine.render(pagecode,templatecode);
 // }
 
 module.exports = app;
-
