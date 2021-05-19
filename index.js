@@ -5,7 +5,7 @@ app.config = {
   pagePath: __dirname + "\\src\\pages",
 };
 
-app.render = engine.render(pagecode, templatecode);
+app.render = engine.render;
 
 // app.getTemplateNameFromPage = function(pageName)
 // {
