@@ -4,7 +4,7 @@
   "description": "JSTF is a NodeJS-Module for rendering data in static HTML",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": " node .\\src\\index.js"
   },
   "repository": {
@@ -19,5 +19,10 @@
   "homepage": "https://github.com/lucaspalomodevelop/JSTE#readme",
   "dependencies": {
     "jsdom": "^16.5.3"
+  },
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "chai": "^4.3.4",
+    "mocha": "^8.4.0"
   }
 }
