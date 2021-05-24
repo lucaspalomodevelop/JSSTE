@@ -7,9 +7,4 @@ app.config = {
 
 app.render = engine.render;
 
-// app.getTemplateNameFromPage = function(pageName)
-// {
-//   return app.pages.get(pageName)["_TEMPLATE_"]
-// }
-
 module.exports = app;

@@ -5,9 +5,7 @@ var should = require('chai').should();
 
 describe('test VARS', function() {
     it('should retrun EXAMPLE', function() {
-        var result = JSTE.render("{'VAR':'EXAMPLE'}","<[VAR]>");
-       // var result = "EXAMPLE";
-        console.log("result =" +result);
+        var result = JSTE.render({'VAR':'EXAMPLE'},"<[VAR]>");
         result.should.equal("EXAMPLE");
       });
   });
