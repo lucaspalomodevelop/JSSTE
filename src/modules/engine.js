@@ -24,7 +24,7 @@ app.render = function (pagecode, templatecode) {
   for (var i in pagecode) {
     var value = undefined;
 
-    var re = new RegExp(/\d*_([A-Z])\w*_/g);
+    var re = new RegExp(/\d*_([A-Z]|[a-z])\w*_/g);
     if (re.test(i)) continue;
 
     value = pagecode[i].toString();
