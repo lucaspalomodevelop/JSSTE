@@ -1,4 +1,5 @@
 const JSTE = require("../");
+const engine = require("../src/engine");
 var assert = require("assert");
 var expect = require("chai").expect;
 var should = require("chai").should();
@@ -63,6 +64,11 @@ describe("test Varnames",function (){
   it("should not render _var_", function () {
     var result = JSTE.render({ _var_: "EXAMPLE" }, "<[_var_]>");
     result.should.equal("<[_var_]>");
+  });
+  it("should impliment _STYLE_", function () {
+    var result = JSTE.render({ _STYLES_: ["EXAMPLE","EXAMPLE2"] }, "<html><head><title>Example App</title></head></html>");
+    
+    //result.should.equal("<[_var_]>");
   });
 })
 

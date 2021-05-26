@@ -1,4 +1,4 @@
-var engine = require("./src/modules/engine");
+var engine = require("./src/engine");
 var app = {};
 app.config = {
   templatePath: __dirname + "\\src\\templates",
@@ -6,5 +6,6 @@ app.config = {
 };
 
 app.render = engine.render;
+app.CONST = engine.CONST;
 
 module.exports = app;
