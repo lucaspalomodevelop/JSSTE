@@ -1,6 +1,6 @@
 {
   "name": "jsste",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Javascript Static Template Emgine",
   "main": "dist/index.js",
   "directories": {
@@ -35,10 +35,10 @@
     "jsdom": "^16.5.3"
   },
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-minify": "^3.1.0",
     "assert": "^2.0.0",
     "chai": "^4.3.4",
+    "gulp": "^4.0.2",
+    "gulp-minify": "^3.1.0",
     "mocha": "^8.4.0"
   }
 }
