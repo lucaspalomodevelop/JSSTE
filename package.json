@@ -2,20 +2,19 @@
   "name": "jsste",
   "version": "1.1.1",
   "description": "A Javascript Static Template Emgine",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "directories": {
     "test": "test"
   },
   "files": [
-    "dist",
+    "src",
     "package.json",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
     "test": "mocha",
-    "build": "gulp build",
-    "publish": "npm run build && npm publish --access publish"
+    "publish": "npm publish --access publish"
   },
   "repository": {
     "type": "git",
@@ -33,6 +32,9 @@
   "homepage": "https://github.com/lucaspalomodevelop/JSSTE#readme",
   "dependencies": {
     "jsdom": "^16.5.3"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
   },
   "devDependencies": {
     "assert": "^2.0.0",

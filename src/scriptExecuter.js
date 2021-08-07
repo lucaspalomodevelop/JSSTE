@@ -11,6 +11,8 @@ function Added() {
 }
 
 function exec(script) {
+  let result = undefined;
+
   script = "".concat(
     Added.toString().replace(/^function\s*\S+\s*\([^)]*\)\s*\{|\}$/g, ""),
     script
@@ -18,9 +20,14 @@ function exec(script) {
 
   script += "\n return outString;";
 
-  let F = new Function(script);
+  try {
+    let F = new Function(script);
 
-  return F();
+    result = F();
+  } catch (error) {
+    result = error;
+  }
+  return result;
 }
 
 module.exports = exec;

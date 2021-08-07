@@ -3,7 +3,7 @@ const fs = require("fs");
 //let appdir = path.join(__dirname, "..");
 let app = {};
 
-app.__config = require("./config")
+app.__config = require("./config");
 app.config = app.__config.getConfig();
 
 function escapeRegExp(string) {
@@ -29,7 +29,7 @@ app.render = function (pagecode, templatecode) {
   if (pagecode != null || pagecode != undefined) {
     try {
       pagecode = JSON.parse(pagecode);
-    } catch{}
+    } catch {}
   }
 
   //TODO
@@ -54,8 +54,11 @@ app.render = function (pagecode, templatecode) {
   for (let i in pagecode) {
     let value = undefined;
 
-    let re = new RegExp(/\d*_([A-Z]|[a-z])\w*_/g);
-    if (re.test(i)) continue;
+    if ( new RegExp(/\d*_([A-Z]|[a-z])\w*_/g).test(i)) continue;
+    if (new RegExp(/js\$([A-Z]*[a-z]*)\w+/g).test(i)) {
+      let SE = require("./scriptExecuter");
+      pagecode[i] = SE(pagecode[i]);
+    }
 
     value = pagecode[i].toString();
     templatecode = replaceAll(templatecode, "<[" + i + "]>", value);
