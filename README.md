@@ -1,44 +1,40 @@
+# JSSTE
 
-# JSTE
-
-JSTE is a NodeJS-Module for rendering data in static HTML
-
+JSSTE is a NodeJS-Module for rendering data in static HTML
 
 ## Example Page (JSON)
 
 ```json
 {
-    "_STYLES_":["Example1","Example2"],
-    "_TEMPLATE_":"firstexample",
-    "TITLE": "app2",
-    "LINK":"http://www.example.de"
+  "_STYLES_": ["Example1", "Example2"],
+  "_TEMPLATE_": "firstexample",
+  "TITLE": "app2",
+  "LINK": "http://www.example.de"
 }
 ```
 
 ## Example Template (HTML)
 
-```html 
-    <!DOCTYPE html>
+```html
+<!DOCTYPE html>
 <html lang="de">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><[TITLE]></title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="app">
-        <a id="googlelink" href="<[LINK]>"><[LINK]></a>
+      <a id="googlelink" href="<[LINK]>"><[LINK]></a>
     </div>
-</body>
-
+  </body>
 </html>
 ```
 
 ## Result (HTML)
 
-``` html
+```html
 
    <!DOCTYPE html>
 <html lang="de">
@@ -63,5 +59,6 @@ JSTE is a NodeJS-Module for rendering data in static HTML
 ```
 
 ## special constants:
--   ```_TEMPLATE_``` -> Defines the path to the temp file 
--   ```_STYLES_```   -> Defines a list of CSS files that will be implemented
+
+- `_TEMPLATE_` -> Defines the path to the temp file
+- `_STYLES_` -> Defines a list of CSS files that will be implemented
