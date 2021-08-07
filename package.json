@@ -1,26 +1,40 @@
 {
-  "name": "jste",
+  "name": "jsste",
   "version": "1.0.0",
-  "description": "JSTF is a NodeJS-Module for rendering data in static HTML",
-  "main": "index.js",
+  "description": "A Javascript Static Template Emgine",
+  "main": "dist/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "test": "mocha",
-    "start": " node .\\src\\index.js"
+    "test": "mocha "
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lucaspalomodevelop/JSTE.git"
+    "url": "git+https://github.com/lucaspalomodevelop/JSSTE.git"
   },
-  "author": "",
+  "keywords": [
+    "engine",
+    "templateengine"
+  ],
+  "author": "lucas palomo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lucaspalomodevelop/JSTE/issues"
+    "url": "https://github.com/lucaspalomodevelop/JSSTE/issues"
   },
-  "homepage": "https://github.com/lucaspalomodevelop/JSTE#readme",
+  "homepage": "https://github.com/lucaspalomodevelop/JSSTE#readme",
   "dependencies": {
     "jsdom": "^16.5.3"
   },
   "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-minify": "^3.1.0",
     "assert": "^2.0.0",
     "chai": "^4.3.4",
     "mocha": "^8.4.0"

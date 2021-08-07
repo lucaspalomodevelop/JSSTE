@@ -1,4 +1,4 @@
-var engine = require("./src/engine");
+var engine = require("./engine");
 var app = {};
 app.config = {
   templatePath: __dirname + "\\src\\templates",
