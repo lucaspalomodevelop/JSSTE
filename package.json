@@ -13,7 +13,9 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "mocha "
+    "test": "mocha",
+    "build": "gulp build",
+    "publish": "npm run build && npm publish --access publish"
   },
   "repository": {
     "type": "git",
