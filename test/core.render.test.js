@@ -38,11 +38,26 @@ function test() {
       result.should.equal("EXAMPLEEXAMPLE");
     });
 
+
     it("should not rendern _VAR_", function () {
       let template = "<[_VAR_]>";
       let page = { VAR: "EXAMPLE" };
       let result = JSSTE_Engine.render(page, template);
-      result.should.equal("<[_VAR_]>");
+      result.should.equal("");
+    });
+
+    it("should not rendern _var_", function () {
+      let template = "<[_var_]>";
+      let page = { var: "EXAMPLE" };
+      let result = JSSTE_Engine.render(page, template);
+      result.should.equal("");
+    });
+
+    it("should not rendern _var2_", function () {
+      let template = "<[_var2_]>";
+      let page = { var2: "EXAMPLE" };
+      let result = JSSTE_Engine.render(page, template);
+      result.should.equal("");
     });
 
     it("should render in href a tag", function () {
