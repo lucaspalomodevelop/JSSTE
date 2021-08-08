@@ -1,14 +1,13 @@
+const checker = require("./checker");
+
 function mergeJson(org, ext) {
   // let placeholder = undefined;
-  if (org !== JSON) {
-    try {
-      org = JSON.parse(org);
-    } catch (error) {}
+
+  if (!checker.isObject(org)) {
+    org = JSON.parse(org);
   }
-  if (ext !== JSON) {
-    try {
-      ext = JSON.parse(ext);
-    } catch (error) {}
+  if (!checker.isObject(ext)) {
+    ext = JSON.parse(ext);
   }
 
   Object.keys(ext).forEach(function (key) {

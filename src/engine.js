@@ -1,4 +1,5 @@
 const fs = require("fs");
+const checker = require("./checker")
 //const path = require("path");
 //let appdir = path.join(__dirname, "..");
 let app = {};
@@ -26,10 +27,8 @@ app.render = function (pagecode, templatecode) {
   //let result = "";
 
   //if (!pagecode == JSON) pagecode = JSON.parse(pagecode);
-  if (pagecode != null || pagecode != undefined) {
-    try {
+  if ((pagecode != null || pagecode != undefined) && checker.isString(pagecode)) {
       pagecode = JSON.parse(pagecode);
-    } catch {}
   }
 
   //TODO
@@ -54,7 +53,7 @@ app.render = function (pagecode, templatecode) {
   for (let i in pagecode) {
     let value = undefined;
 
-    if ( new RegExp(/\d*_([A-Z]|[a-z])\w*_/g).test(i)) continue;
+    if (new RegExp(/\d*_([A-Z]|[a-z])\w*_/g).test(i)) continue;
     if (new RegExp(/js\$([A-Z]*[a-z]*)\w+/g).test(i)) {
       let SE = require("./scriptExecuter");
       pagecode[i] = SE(pagecode[i]);
