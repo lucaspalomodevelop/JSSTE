@@ -30,7 +30,9 @@
     "url": "https://github.com/lucaspalomodevelop/JSSTE/issues"
   },
   "homepage": "https://github.com/lucaspalomodevelop/JSSTE#readme",
-  "dependencies": {},
+  "dependencies": {
+    "typechecker": "^7.18.0"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },

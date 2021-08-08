@@ -1,5 +1,5 @@
 const fs = require("fs");
-const checker = require("./checker")
+const checker = require("typechecker");
 //const path = require("path");
 //let appdir = path.join(__dirname, "..");
 let app = {};
@@ -27,8 +27,11 @@ app.render = function (pagecode, templatecode) {
   //let result = "";
 
   //if (!pagecode == JSON) pagecode = JSON.parse(pagecode);
-  if ((pagecode != null || pagecode != undefined) && checker.isString(pagecode)) {
-      pagecode = JSON.parse(pagecode);
+  if (
+    (pagecode != null || pagecode != undefined) &&
+    checker.isString(pagecode)
+  ) {
+    pagecode = JSON.parse(pagecode);
   }
 
   //TODO

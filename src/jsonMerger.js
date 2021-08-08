@@ -1,4 +1,4 @@
-const checker = require("./checker");
+const checker = require("typechecker");
 
 function mergeJson(org, ext) {
   // let placeholder = undefined;
