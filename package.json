@@ -1,6 +1,6 @@
 {
   "name": "jsste",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A Javascript Static Template Emgine",
   "main": "src/index.js",
   "directories": {
@@ -30,8 +30,7 @@
     "url": "https://github.com/lucaspalomodevelop/JSSTE/issues"
   },
   "homepage": "https://github.com/lucaspalomodevelop/JSSTE#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "engines": {
     "node": ">= 0.10.0"
   },
