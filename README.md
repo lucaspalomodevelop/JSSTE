@@ -99,8 +99,8 @@ let result = Jsste.render(pagecode, templatecode);
 // <html>
 //   <head>
 //     <title>JSSTE Example</title>
-//     <link rel="stylesheet" href="./main">
-//     <link rel="stylesheet" href="./othercss">
+//     <link rel="stylesheet" href="./main.css">
+//     <link rel="stylesheet" href="./othercss.css">
 //   </head>
 //   <body>
 //     <h1>Hello World</h1>
