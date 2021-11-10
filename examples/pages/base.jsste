@@ -1,0 +1,4 @@
+{
+    "_STYLES_":["./style"],
+    "js$Date": "return Date.now() + ' is the TimeStemp';"
+}

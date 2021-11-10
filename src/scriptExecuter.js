@@ -8,6 +8,9 @@ function Added() {
   function outLine(arg) {
     outString += "\n" + arg;
   }
+
+  
+
 }
 
 function exec(script) {
@@ -31,7 +34,3 @@ function exec(script) {
 }
 
 module.exports = exec;
-
-/* 
-
-*/

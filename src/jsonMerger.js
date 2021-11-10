@@ -19,6 +19,9 @@ function mergeJson(org, ext) {
           org[key].push(item);
         });
       }
+      else {
+        org[key] = value;
+      }
     } else {
       org[key] = value;
     }
@@ -31,7 +34,7 @@ function mergeJsons(org, ...ext) {
   ext.forEach((element) => {
     org = mergeJson(org, element);
   });
-  return org;
+  return { ...org };
 }
 
 module.exports = { mergeJson, mergeJsons };

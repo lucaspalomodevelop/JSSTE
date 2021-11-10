@@ -21,6 +21,13 @@ function test() {
       let result = scriptExecuter(script);
       result.should.equal("\nHalloWelt\nHalloWelt");
     });
+
+    // it("should return script result outLine()", function () {
+    //   let script = "Helloworld";
+
+    //   let result = scriptExecuter(script);
+    //   result.should.equal("HalloWelt");
+    // });
   });
 }
 module.exports = test;

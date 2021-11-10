@@ -1,5 +1,7 @@
 # JSSTE
 
+<include>./blub.emd</include>
+
 ![npm](https://img.shields.io/npm/v/jsste)
 ![NPM](https://img.shields.io/npm/l/jsste)
 [![Downloads](https://img.shields.io/npm/dm/jsste)](https://www.npmjs.com/package/jsste)
@@ -69,7 +71,7 @@ let result = Jsste.render(pagecode, templatecode);
 
 ```
 
-### Special Variables
+ ### Special Variables
 
 - `_TEMPLATE_` -> Defines the path to the temp file
 - `_STYLES_` -> Defines a list of CSS files that will be implemented
@@ -107,6 +109,8 @@ let result = Jsste.render(pagecode, templatecode);
 //     <p>This is a test</p>
 //   </body>
 // </html>
+
+
 
 
 ```

@@ -53,6 +53,24 @@ function test() {
       result = JSON.stringify(result);
       result.should.equal(JSON.stringify({ a: ["a", "b", "c"], b: "hallo" }));
     });
+
+    it("should merge 2 jsons with array only in secound json", function () {
+      let json1 = {};
+      let json2 = { a: ["c"], b: "hallo" };
+
+      let result = jsonmerger.mergeJsons(json1, json2);
+      result = JSON.stringify(result);
+      result.should.equal(JSON.stringify({ a: ["c"], b: "hallo" }));
+    });
+
+    it("should merge 2 jsons with array with only in first json", function () {
+      let json1 = { a: ["a", "b"] };
+      let json2 = { b: "hallo" };
+
+      let result = jsonmerger.mergeJsons(json1, json2);
+      result = JSON.stringify(result);
+      result.should.equal(JSON.stringify({ a: ["a", "b"], b: "hallo" }));
+    });
   });
 }
 

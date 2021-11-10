@@ -1,11 +1,12 @@
 const fs = require("fs");
 const checker = require("typechecker");
-//const path = require("path");
+const path = require("path");
+const jsonmerger = require("./jsonMerger");
 //let appdir = path.join(__dirname, "..");
 let app = {};
 
-app.__config = require("./config");
-app.config = app.__config.getConfig();
+// app.__config = require("./config");
+// app.config = app.__config.getConfig();
 
 function escapeRegExp(string) {
   return string.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
@@ -35,10 +36,49 @@ app.render = function (pagecode, templatecode) {
   }
 
   //TODO
-  if (templatecode === null || templatecode == undefined) {
-    templatecode == fs.readFileSync(pagecode["_TEMPLATE_"] + ".html");
+  if (!templatecode) {
+    templatecode = fs.readFileSync(
+      path.join(app.config.templatePath, pagecode["_TEMPLATE_"] + ".tjsste"),
+      "utf-8"
+    );
   }
 
+  let DissolveImports = function (_pagecode, imports) {
+    let ImportSet = new Set();
+
+    let recursive = function (importNames) {
+      importNames.forEach(function (importName) {
+        let importPath = importName.startsWith(".")
+          ? path.join(importName)
+          : path.join(app.config.pagePath, importName);
+        let importCodeString = fs.readFileSync(importPath, "utf-8");
+
+        let importCode = JSON.parse(importCodeString);
+        if (importCode["_IMPORTS_"] !== undefined) {
+          recursive(importCode["_IMPORTS_"]);
+        }
+        ImportSet.add(importPath);
+      });
+    };
+
+    recursive(imports);
+
+    console.log(ImportSet);
+
+    let currentPagecode = _pagecode;
+
+    ImportSet.forEach(function (importPath) {
+      let importCodeString = fs.readFileSync(importPath, "utf-8");
+      let importCode = JSON.parse(importCodeString);
+      currentPagecode = jsonmerger.mergeJson(currentPagecode, importCode);
+    });
+
+    pagecode = currentPagecode;
+  };
+
+  //TODO Killed Root Import
+  app.CONST(pagecode, "_IMPORTS_", DissolveImports);
+  console.log(pagecode);
   app.CONST(pagecode, "_STYLES_", (pagecode, value) => {
     let rex = /<head>(.|\n|\t|\r)*?<\/head>/;
     let header = templatecode.match(rex);
@@ -56,17 +96,15 @@ app.render = function (pagecode, templatecode) {
   for (let i in pagecode) {
     let value = undefined;
 
-    if (new RegExp(/\d*_([A-Z]|[a-z])\w*_/g).test(i)) continue;
-    if (new RegExp(/js\$([A-Z]*[a-z]*)\w+/g).test(i)) {
+    if (new RegExp(/\d*_([A-Z]*|[a-z])\w*_/g).test(i)) continue;
+    if (new RegExp(/js\$([A-Z]*|[a-z]*)\w+/g).test(i)) {
       let SE = require("./scriptExecuter");
       pagecode[i] = SE(pagecode[i]);
     }
-
     value = pagecode[i].toString();
     templatecode = replaceAll(templatecode, "<[" + i + "]>", value);
   }
-
-  return templatecode.replace(new RegExp(/\d*<\[([A-Z]*[a-z]*)\w*\]>/g), "");
+  return templatecode.replace(new RegExp(/<\[([A-Z]*|[a-z]*)\w*\]>/g), "");
 };
 
 module.exports = app;
