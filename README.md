@@ -40,7 +40,6 @@ jsste.render(pagecode, tempaltecode);
 
 #### Example
 
-
 ```javascript
 const templatecode = `
 <html>
@@ -54,7 +53,7 @@ const templatecode = `
 </html>
 `;
 
-const pagecode = {"VARNAME1":"Hello World", "VARNAME2":"This is a test"};
+const pagecode = { VARNAME1: "Hello World", VARNAME2: "This is a test" };
 
 let result = Jsste.render(pagecode, templatecode);
 
@@ -68,17 +67,14 @@ let result = Jsste.render(pagecode, templatecode);
 //     <p>This is a test</p>
 //   </body>
 // </html>
-
 ```
 
- ### Special Variables
+### Special Variables
 
 - `_TEMPLATE_` -> Defines the path to the temp file
 - `_STYLES_` -> Defines a list of CSS files that will be implemented
 
-
 #### Example
-
 
 ```javascript
 const templatecode = `
@@ -101,16 +97,13 @@ let result = Jsste.render(pagecode, templatecode);
 // <html>
 //   <head>
 //     <title>JSSTE Example</title>
-//     <link rel="stylesheet" href="./main">
-//     <link rel="stylesheet" href="./othercss">
+//     <link rel="stylesheet" href="./main.css">
+//     <link rel="stylesheet" href="./othercss.css">
 //   </head>
 //   <body>
 //     <h1>Hello World</h1>
 //     <p>This is a test</p>
 //   </body>
 // </html>
-
-
-
 
 ```
