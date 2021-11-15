@@ -1,5 +1,5 @@
 {
-    "_STYLES_":["./style"],
+    "_STYLES_":["base"],
     "_TEMPLATE_":"page1",
     "_TITLE_":"Page2.2",
     "root":"root",

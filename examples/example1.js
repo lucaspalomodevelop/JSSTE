@@ -22,9 +22,28 @@ let fs = require("fs");
 //   // res.send("File Not found");
 // });
 
+let folders = {
+  jsste: "pages",
+  css: "styles",
+};
+
+function getFolderFromFileEnding(filename) {
+  let regex_isAnDotfile = /\w+\.[a-z]*[A-Z]*/;
+  if (regex_isAnDotfile.test(filename)) {
+    let ending = filename.split(".").pop();
+    return folders[ending];
+  }
+  return folders.jsste;
+}
+
 function defaultUse(req, res, next) {
   let regex_isAnDotfile = /\w+\.[a-z]*[A-Z]*/;
-  let filePath = path.join(__dirname, "pages", req.url);
+
+  let filePath = path.join(
+    __dirname,
+    getFolderFromFileEnding(req.url),
+    req.url
+  );
 
   if (regex_isAnDotfile.test(req.url) && !filePath.endsWith(".jsste")) {
     res.sendFile(filePath);

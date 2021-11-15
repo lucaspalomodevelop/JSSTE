@@ -1,5 +1,5 @@
 {
-    "_IMPORTS_":["data.jsste","base.jsste"],
+    "_IMPORTS_":["data.jsste","lib/base.jsste"],
     "a":"h1 - test",
     "c":"p - test"
 }

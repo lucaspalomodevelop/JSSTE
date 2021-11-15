@@ -1,0 +1,3 @@
+{
+    "js$Date": "return Date.now();"
+}

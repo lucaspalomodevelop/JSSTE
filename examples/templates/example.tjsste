@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Template Example</title>
+  </head>
+  <body>
+    <ul>
+              <li>
+        <p>timestemp: <[js$Date]></p>
+      </li>
+          <li>
+        <p>path: <[_SELFPATH_]></p>
+      </li>
+      <li>
+        <p>a: <[a]></p>
+      </li>
+      <li>
+        <p>b: <[b]></p>
+      </li>
+      <li>
+        <p>c: <[c]></p>
+      </li>
+      <li>
+        <p>d: <[d]></p>
+      </li>
+      <li>
+        <p>e: <[e]></p>
+      </li>
+      <li>
+        <p>f: <[f]></p>
+      </li>
+      <li>
+        <p>g: <[g]></p>
+      </li>
+    </ul>
+  </body>
+</html>

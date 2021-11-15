@@ -1,0 +1,6 @@
+{
+    "_STYLES_":["base"],
+    "js$Date": "return Date.now() + ' is the TimeStemp';",
+"js$uxTime":"Date.Now();",
+"js$TimeStemp":"const heute = new Date(); return heute"
+}

@@ -37,10 +37,14 @@ app.render = function (pagecode, templatecode) {
 
   //TODO
   if (!templatecode) {
-    templatecode = fs.readFileSync(
-      path.join(app.config.templatePath, pagecode["_TEMPLATE_"] + ".tjsste"),
-      "utf-8"
-    );
+    try {
+      templatecode = fs.readFileSync(
+        path.join(app.config.templatePath, pagecode["_TEMPLATE_"] + ".tjsste"),
+        "utf-8"
+      );
+    } catch (error) {
+      return 404;
+    }
   }
 
   let DissolveImports = function (_pagecode, imports) {
@@ -48,10 +52,17 @@ app.render = function (pagecode, templatecode) {
 
     let recursive = function (importNames) {
       importNames.forEach(function (importName) {
+        let importCodeString = "";
         let importPath = importName.startsWith(".")
-          ? path.join(importName)
+          ? path.join(_pagecode["_SELFPATH_"].toString(), importName.toString())
           : path.join(app.config.pagePath, importName);
-        let importCodeString = fs.readFileSync(importPath, "utf-8");
+        console.log(importPath);
+        console.log(_pagecode);
+        try {
+          importCodeString = fs.readFileSync(importPath, "utf-8");
+        } catch (error) {
+          return "Ups... Import File Failed";
+        }
 
         let importCode = JSON.parse(importCodeString);
         if (importCode["_IMPORTS_"] !== undefined) {
@@ -63,22 +74,22 @@ app.render = function (pagecode, templatecode) {
 
     recursive(imports);
 
-    console.log(ImportSet);
+    //console.log(ImportSet);
 
     let currentPagecode = _pagecode;
 
     ImportSet.forEach(function (importPath) {
+      console.log(importPath);
       let importCodeString = fs.readFileSync(importPath, "utf-8");
       let importCode = JSON.parse(importCodeString);
       currentPagecode = jsonmerger.mergeJson(currentPagecode, importCode);
     });
-
     pagecode = currentPagecode;
   };
 
   //TODO Killed Root Import
   app.CONST(pagecode, "_IMPORTS_", DissolveImports);
-  console.log(pagecode);
+  //console.log(pagecode);
   app.CONST(pagecode, "_STYLES_", (pagecode, value) => {
     let rex = /<head>(.|\n|\t|\r)*?<\/head>/;
     let header = templatecode.match(rex);
@@ -104,7 +115,17 @@ app.render = function (pagecode, templatecode) {
     value = pagecode[i].toString();
     templatecode = replaceAll(templatecode, "<[" + i + "]>", value);
   }
-  return templatecode.replace(new RegExp(/<\[([A-Z]*|[a-z]*)\w*\]>/g), "");
+  templatecode = templatecode.replace(
+    new RegExp(/<\[([A-Z]*|[a-z]*)\w*\]>/g),
+    ""
+  );
+
+  templatecode = templatecode.replace(
+    new RegExp(/<\[([A-Z]*|[a-z]*)\$([A-Z]*|[a-z]*)\w*\]>/g),
+    ""
+  );
+
+  return templatecode;
 };
 
 module.exports = app;

@@ -11,6 +11,7 @@
     <p><[c]></p>
      <p><[b]></p>
      <p><[js$Date]></p>
+     <p><[js$TimeStemp]></p>
      <p> root: <[root]></p>
      <p><[Base_Date]></p>
      <script>

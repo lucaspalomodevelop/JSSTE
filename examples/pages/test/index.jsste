@@ -1,0 +1,4 @@
+{
+"_TEMPLATE_": "example",
+"_IMPORTS_":["./a.jsste","lib/base.jsste"]
+}

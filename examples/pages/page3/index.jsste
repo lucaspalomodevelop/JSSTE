@@ -1,0 +1,5 @@
+{
+    "_TEMPLATE_":"page3",
+    "Title":"Page3",
+    "_IMPORTS_":["lib/base.jsste","./mybase.jsste"]
+}
