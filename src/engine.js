@@ -5,8 +5,8 @@ const jsonmerger = require("./jsonMerger");
 //let appdir = path.join(__dirname, "..");
 let app = {};
 
-// app.__config = require("./config");
-// app.config = app.__config.getConfig();
+app.__config = require("./config");
+app.config = app.__config.getConfig();
 
 function escapeRegExp(string) {
   return string.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
@@ -108,6 +108,7 @@ app.render = function (pagecode, templatecode) {
     let value = undefined;
 
     if (new RegExp(/\d*_([A-Z]*|[a-z])\w*_/g).test(i)) continue;
+    if (new RegExp(/\/\//g).test(i)) continue;
     if (new RegExp(/js\$([A-Z]*|[a-z]*)\w+/g).test(i)) {
       let SE = require("./scriptExecuter");
       pagecode[i] = SE(pagecode[i]);
@@ -124,6 +125,8 @@ app.render = function (pagecode, templatecode) {
     new RegExp(/<\[([A-Z]*|[a-z]*)\$([A-Z]*|[a-z]*)\w*\]>/g),
     ""
   );
+
+  templatecode = templatecode.replace(new RegExp(/<\[\/\/]\>/g), "");
 
   return templatecode;
 };

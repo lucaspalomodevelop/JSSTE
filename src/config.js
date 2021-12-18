@@ -2,6 +2,8 @@ let config = {};
 let configvar = {
   templatePath: __dirname + "\\src\\templates",
   pagePath: __dirname + "\\src\\pages",
+  assetsPath: __dirname + "\\src\\assets",
+  stylesheets: __dirname + "\\src\\styles",
 };
 
 config.get = function (key) {

@@ -14,6 +14,7 @@
      <p><[js$TimeStemp]></p>
      <p> root: <[root]></p>
      <p><[Base_Date]></p>
+     <p>Kommentar: <[//]></p>
      <script>
      let c = "<[c]>";
      console.log(c);

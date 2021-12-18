@@ -1,26 +1,18 @@
-let app = require("express")();
-let path = require("path");
+let express = require("express");
+let app = express();
 let jsste = require("../src");
+const bodyParser = require("body-parser");
+let path = require("path");
+let fs = require("fs");
+var decode = require("urldecode");
+
 jsste.__config.set("templatePath", __dirname + "/templates");
 jsste.__config.set("pagePath", __dirname + "/pages");
-let fs = require("fs");
-//let supertest = require("supertest");
+jsste.__config.set("assetsPath", "./assets");
+jsste.__config.set("stylesheets", "./styles");
 
-// app.set("views", path.join(__dirname)); // specify the views directory
-// app.set("view engine", "jsste");
-// app.engine("jsste", require("../src").expressEngine());
-// app.get("/:id", function (req, res) {
-//   if (/\w+\.[a-z]*[A-Z]*/.test(req.params.id)) {
-//     res.sendFile(path.join(__dirname, "pages", req.params.id));
-//   } else {
-//     let filePath = path.join(__dirname, "pages", req.params.id + ".jsste");
-
-//     let content = jsste.renderFile(filePath);
-//     res.send(content);
-//   }
-
-//   // res.send("File Not found");
-// });
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 let folders = {
   jsste: "pages",
@@ -38,38 +30,29 @@ function getFolderFromFileEnding(filename) {
 
 function defaultUse(req, res, next) {
   let regex_isAnDotfile = /\w+\.[a-z]*[A-Z]*/;
-
   let filePath = path.join(
-    __dirname,
-    getFolderFromFileEnding(req.url),
-    req.url
+    __dirname.toString(),
+    getFolderFromFileEnding(req.url).toString(),
+    req.url.toString()
   );
-
   if (regex_isAnDotfile.test(req.url) && !filePath.endsWith(".jsste")) {
     res.sendFile(filePath);
   } else if (fs.existsSync(filePath + ".jsste")) {
     let content = jsste.renderFile(filePath + ".jsste");
     res.send(content);
   } else if (fs.lstatSync(filePath).isDirectory()) {
-    let content = jsste.renderFile(path.join(filePath, "index.jsste"));
+    let content = jsste.renderFile(decode(path.join(filePath, "index.jsste")));
     res.send(content);
   } else next();
 }
+app.get("/assets/*", (req, res) => {
+  console.log(req.url);
+  console.log(__dirname);
+  res.sendFile(decode(path.join(__dirname, req.url)));
+});
 
-app.use(defaultUse);
-// app.use((req, res, next) => {
-//   if (/\w+\.[a-z]*[A-Z]*/.test(req.url)) {
-//     res.sendFile(path.join(__dirname, "pages", req.url));
-//   } else if (fs.existsSync(path.join(__dirname, "pages", req.url + ".jsste"))) {
-//     let filePath = path.join(__dirname, "pages", req.url + ".jsste");
-
-//     let content = jsste.renderFile(filePath);
-//     res.send(content);
-//   } else {
-//     next();
-//   }
-// });
+app.get("/*", defaultUse);
 
 app.listen(8000, function () {
-  console.log("Example app listening on port 8000!");
+  console.log("Example app listening on port http://127.0.0.1:8000 !");
 });
