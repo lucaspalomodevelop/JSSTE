@@ -1,7 +1,5 @@
 # JSSTE
 
-<include>./blub.emd</include>
-
 ![npm](https://img.shields.io/npm/v/jsste)
 ![NPM](https://img.shields.io/npm/l/jsste)
 [![Downloads](https://img.shields.io/npm/dm/jsste)](https://www.npmjs.com/package/jsste)
