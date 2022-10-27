@@ -14,6 +14,18 @@ config.getConfig = function () {
   return configvar;
 };
 
+config.setConfig = function ({
+  templatePath,
+  pagePath,
+  assetsPath,
+  stylesheets,
+}) {
+  configvar.templatePath = templatePath;
+  configvar.pagePath = pagePath;
+  configvar.assetsPath = assetsPath;
+  configvar.stylesheets = stylesheets;
+};
+
 config.set = function (key, value) {
   configvar[key] = value;
 };

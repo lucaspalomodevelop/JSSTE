@@ -1,4 +1,6 @@
 planning
+.vscode
+built
 # Logs
 logs
 *.log

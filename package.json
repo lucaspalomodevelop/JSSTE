@@ -14,7 +14,8 @@
   ],
   "scripts": {
     "test": "mocha ./test/test.test.js",
-    "publish": "npm publish --access publish"
+    "publish": "npm publish --access publish",
+    "compile": "tsc"
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,8 @@
   },
   "homepage": "https://github.com/lucaspalomodevelop/JSSTE#readme",
   "dependencies": {
-    "typechecker": "^7.18.0"
+    "typechecker": "^7.18.0",
+    "yarn": "^1.22.19"
   },
   "engines": {
     "node": ">= 0.10.0"
@@ -40,7 +42,11 @@
     "assert": "^2.0.0",
     "chai": "^4.3.4",
     "express": "^4.17.1",
+    "gulp": "^4.0.2",
+    "gulp-minify": "^3.1.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "mocha": "^8.4.0",
+    "typescript": "^4.5.4",
     "urldecode": "^1.0.1"
   }
 }
