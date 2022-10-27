@@ -8,6 +8,7 @@ let app = {};
 app.__config = require("./config");
 app.config = app.__config.getConfig();
 
+//function to escape regex
 function escapeRegExp(string) {
   return string.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
 }
