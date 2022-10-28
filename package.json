@@ -1,6 +1,6 @@
 {
   "name": "jsste",
-  "version": "1.1.3",
+  "version": "1.2.0",
   "description": "A Javascript Static Template Emgine",
   "main": "src/index.js",
   "directories": {
@@ -32,8 +32,7 @@
   },
   "homepage": "https://github.com/lucaspalomodevelop/JSSTE#readme",
   "dependencies": {
-    "typechecker": "^7.18.0",
-    "yarn": "^1.22.19"
+    "typechecker": "^7.18.0"
   },
   "engines": {
     "node": ">= 0.10.0"

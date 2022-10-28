@@ -105,3 +105,5 @@ let result = Jsste.render(pagecode, templatecode);
 // </html>
 
 ```
+
+#### Examples on [https://github.com/lucaspalomodevelop/JSSTE-Examples](https://github.com/lucaspalomodevelop/JSSTE-Examples)
