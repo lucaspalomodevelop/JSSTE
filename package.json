@@ -1,7 +1,7 @@
 {
   "name": "jsste",
-  "version": "1.2.0",
-  "description": "A Javascript Static Template Emgine",
+  "version": "1.2.1",
+  "description": "A Javascript Static Template Engine",
   "main": "src/index.js",
   "directories": {
     "test": "test"
@@ -23,9 +23,10 @@
   },
   "keywords": [
     "engine",
-    "templateengine"
+    "templateengine",
+    "jsste"
   ],
-  "author": "lucas palomo",
+  "author": "Lucas Palomo Lauterbach",
   "license": "GPL",
   "bugs": {
     "url": "https://github.com/lucaspalomodevelop/JSSTE/issues"
