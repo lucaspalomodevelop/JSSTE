@@ -12,10 +12,23 @@ app.renderFile = (filePath) => {
   file["_SELFPATH_"] = path.dirname(filePath);
   return engine.render(file);
 };
+app.setStateFunction = function (callback) {
+  app.stateCallback = callback;
+};
+
+app.setState = ({ status, statusMSG }) => {
+  if (app.stateCallback != undefined) {
+    app.stateCallback({ status, statusMSG });
+  }
+};
+// app.log = function({status, statusMSG}){
+
+// };
 // engine.config = app.config;
 app.__config = require("./config");
 app.config = app.__config.getConfig();
-engine.config = app.config;
+engine.log = app.log;
+engine.setState = app.setState;
 
 // app.expressEngine = (
 //   config = {

@@ -9,8 +9,6 @@ function Added() {
     outString += "\n" + arg;
   }
 
-  
-
 }
 
 function exec(script) {

@@ -29,26 +29,31 @@ app.render = function (pagecode, templatecode) {
   //let result = "";
 
   //if (!pagecode == JSON) pagecode = JSON.parse(pagecode);
+  app.setState({ status: 0, statusMSG: "Render Page" });
   if (
     (pagecode != null || pagecode != undefined) &&
     checker.isString(pagecode)
   ) {
     pagecode = JSON.parse(pagecode);
+    app.setState({ status: 0, statusMSG: "Parse Pagecode" });
   }
 
   //TODO
   if (!templatecode) {
     try {
+      app.setState({ status: 0, statusMSG: "Load Templatecode" });
       templatecode = fs.readFileSync(
         path.join(app.config.templatePath, pagecode["_TEMPLATE_"] + ".tjsste"),
         "utf-8"
       );
     } catch (error) {
+      app.setState({ status: 1, statusMSG: "Cant load Templatecode" });
       return 404;
     }
   }
 
   let DissolveImports = function (_pagecode, imports) {
+    app.setState({ status: 0, statusMSG: "Dissolve Imports" });
     let ImportSet = new Set();
 
     let recursive = function (importNames) {
@@ -62,6 +67,7 @@ app.render = function (pagecode, templatecode) {
         try {
           importCodeString = fs.readFileSync(importPath, "utf-8");
         } catch (error) {
+          app.setState({ status: 1, statusMSG: "Import File Failed" });
           return "Ups... Import File Failed";
         }
 
@@ -80,7 +86,8 @@ app.render = function (pagecode, templatecode) {
     let currentPagecode = _pagecode;
 
     ImportSet.forEach(function (importPath) {
-      console.log(importPath);
+      app.setState({ status: 0, statusMSG: "Import Importfiles" });
+
       let importCodeString = fs.readFileSync(importPath, "utf-8");
       let importCode = JSON.parse(importCodeString);
       currentPagecode = jsonmerger.mergeJson(currentPagecode, importCode);
@@ -92,6 +99,7 @@ app.render = function (pagecode, templatecode) {
   app.CONST(pagecode, "_IMPORTS_", DissolveImports);
   //console.log(pagecode);
   app.CONST(pagecode, "_STYLES_", (pagecode, value) => {
+    app.setState({ status: 0, statusMSG: "Import Styles" });
     let rex = /<head>(.|\n|\t|\r)*?<\/head>/;
     let header = templatecode.match(rex);
     header = header[0].replace("</head>", "");
@@ -106,17 +114,22 @@ app.render = function (pagecode, templatecode) {
   });
 
   for (let i in pagecode) {
+    app.setState({ status: 0, statusMSG: "Set vars" });
     let value = undefined;
 
     if (new RegExp(/\d*_([A-Z]*|[a-z])\w*_/g).test(i)) continue;
     if (new RegExp(/\/\//g).test(i)) continue;
     if (new RegExp(/js\$([A-Z]*|[a-z]*)\w+/g).test(i)) {
+      app.setState({ status: 0, statusMSG: "Execute Serverside Script" });
       let SE = require("./scriptExecuter");
       pagecode[i] = SE(pagecode[i]);
     }
     value = pagecode[i].toString();
     templatecode = replaceAll(templatecode, "<[" + i + "]>", value);
   }
+
+  app.setState({ status: 0, statusMSG: "Delete unused Placeholder" });
+
   templatecode = templatecode.replace(
     new RegExp(/<\[([A-Z]*|[a-z]*)\w*\]>/g),
     ""
