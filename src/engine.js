@@ -37,6 +37,10 @@ app.render = function (pagecode, templatecode) {
     pagecode = JSON.parse(pagecode);
     app.setState({ status: 0, statusMSG: "Parse Pagecode" });
   }
+  else
+  {
+    app.setState({ status: 1, statusMSG: "Pagecode is undefined" });
+  }
 
   //TODO
   if (!templatecode) {
@@ -113,8 +117,9 @@ app.render = function (pagecode, templatecode) {
     //  replaceAll(templatecode,rex,value)
   });
 
+  app.setState({ status: 0, statusMSG: "Set vars" });
   for (let i in pagecode) {
-    app.setState({ status: 0, statusMSG: "Set vars" });
+    app.setState({ status: 0, statusMSG: "Set " + pagecode[i] });
     let value = undefined;
 
     if (new RegExp(/\d*_([A-Z]*|[a-z])\w*_/g).test(i)) continue;
@@ -142,6 +147,7 @@ app.render = function (pagecode, templatecode) {
 
   templatecode = templatecode.replace(new RegExp(/<\[\/\/]\>/g), "");
 
+  app.setState({ status: 0, statusMSG: "Return HTML" });
   return templatecode;
 };
 
