@@ -7,13 +7,13 @@ var app = {};
 app.render = engine.render;
 app.CONST = engine.CONST;
 app.renderFile = (filePath) => {
+  this.setState({ status: 0, statusMSG: "read file" });
   let file = fs.readFileSync(filePath, "utf8");
+  this.setState({ status: 0, statusMSG: "parse file" });
   file = JSON.parse(file);
+  this.setState({ status: 0, statusMSG: "set Selfpath" });
   file["_SELFPATH_"] = path.dirname(filePath);
   return engine.render(file);
-};
-app.setStateFunction = function (callback) {
-  app.stateCallback = callback;
 };
 
 app.setState = ({ status, statusMSG }) => {
@@ -21,6 +21,13 @@ app.setState = ({ status, statusMSG }) => {
     app.stateCallback({ status, statusMSG });
   }
 };
+
+app.setStateFunction = function (callback) {
+  app.stateCallback = callback;
+  this.setState({ status: 0, statusMSG: "set Statefunction" });
+  this.setState({ status: 0, statusMSG: "JSSTE is ready" });
+};
+
 // app.log = function({status, statusMSG}){
 
 // };
