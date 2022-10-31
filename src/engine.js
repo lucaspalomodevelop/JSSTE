@@ -1,5 +1,4 @@
 const fs = require("fs");
-const checker = require("typechecker");
 const path = require("path");
 const jsonmerger = require("./jsonMerger");
 //let appdir = path.join(__dirname, "..");
@@ -32,7 +31,7 @@ app.render = function (pagecode, templatecode) {
   app.setState({ status: 0, statusMSG: "Render Page" });
   if (
     (pagecode != null || pagecode != undefined) &&
-    checker.isString(pagecode)
+    (typeof pagecode === 'string')
   ) {
     pagecode = JSON.parse(pagecode);
     app.setState({ status: 0, statusMSG: "Parse Pagecode" });
