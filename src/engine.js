@@ -62,8 +62,8 @@ app.render = function (pagecode, templatecode) {
         let importPath = importName.startsWith(".")
           ? path.join(_pagecode["_SELFPATH_"].toString(), importName.toString())
           : path.join(app.config.pagePath, importName);
-        console.log(importPath);
-        console.log(_pagecode);
+        // console.log(importPath);
+        // console.log(_pagecode);
         try {
           importCodeString = fs.readFileSync(importPath, "utf-8");
         } catch (error) {
