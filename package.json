@@ -32,7 +32,6 @@
   },
   "homepage": "https://github.com/lucaspalomodevelop/JSSTE#readme",
   "dependencies": {
-    "typechecker": "^7.18.0"
   },
   "engines": {
     "node": ">= 0.10.0"
