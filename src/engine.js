@@ -6,15 +6,33 @@ let app = {};
 app.__config = require("./config");
 app.config = app.__config.getConfig();
 
-//function to escape regex
+/**
+ * function to escape regex
+ * @param {*} string
+ * @returns
+ */
 function escapeRegExp(string) {
   return string.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
 }
 
+/**
+ * replace all placeholder in a string
+ * @param {*} str
+ * @param {*} find
+ * @param {*} replace
+ * @returns
+ */
 function replaceAll(str, find, replace) {
   return str.replace(new RegExp(escapeRegExp(find), "g"), replace);
 }
 
+/**
+ * function to handle consts 
+ * @param {*} pagecode
+ * @param {*} constant
+ * @param {*} callback
+ * @returns
+ */
 app.CONST = function (pagecode, constant, callback) {
   if (pagecode[constant] !== undefined) {
     callback(pagecode, pagecode[constant]);
@@ -23,17 +41,21 @@ app.CONST = function (pagecode, constant, callback) {
   }
 };
 
+/**
+ * renders Pagecode in Templatecode
+ * @param {*} pagecode
+ * @param {*} templatecode
+ * @returns
+ */
 app.render = function (pagecode, templatecode) {
   app.setState({ status: 0, statusMSG: "Render Page" });
   if (
     (pagecode != null || pagecode != undefined) &&
-    (typeof pagecode === 'string')
+    typeof pagecode === "string"
   ) {
     pagecode = JSON.parse(pagecode);
     app.setState({ status: 0, statusMSG: "Parse Pagecode" });
-  }
-  else
-  {
+  } else {
     app.setState({ status: 1, statusMSG: "Pagecode is undefined" });
   }
 
@@ -50,6 +72,11 @@ app.render = function (pagecode, templatecode) {
     }
   }
 
+  /**
+   * Dissolve Fileimports
+   * @param {*} _pagecode
+   * @param {*} imports
+   */
   let DissolveImports = function (_pagecode, imports) {
     app.setState({ status: 0, statusMSG: "Dissolve Imports" });
     let ImportSet = new Set();
@@ -89,8 +116,10 @@ app.render = function (pagecode, templatecode) {
     pagecode = currentPagecode;
   };
 
+  // Handle _IMPORTS_ const 
   app.CONST(pagecode, "_IMPORTS_", DissolveImports);
 
+  // Handle _STYLES_ const 
   app.CONST(pagecode, "_STYLES_", (pagecode, value) => {
     app.setState({ status: 0, statusMSG: "Import Styles" });
     let rex = /<head>(.|\n|\t|\r)*?<\/head>/;
@@ -103,7 +132,6 @@ app.render = function (pagecode, templatecode) {
     header += "\n</head>";
 
     templatecode = templatecode.replace(/<head>(.|\n|\t|\r)*?<\/head>/, header);
-
   });
 
   app.setState({ status: 0, statusMSG: "Set vars" });

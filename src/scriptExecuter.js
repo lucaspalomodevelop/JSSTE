@@ -1,3 +1,6 @@
+/**
+ * that functions defines functions to use it in JSSTE JS var (js$varname)
+ */
 function Added() {
   let outString = "";
 
@@ -8,9 +11,13 @@ function Added() {
   function outLine(arg) {
     outString += "\n" + arg;
   }
-
 }
 
+/**
+ * exectue JSSTE JS var (js$varname)
+ * @param {*} script
+ * @returns
+ */
 function exec(script) {
   let result = undefined;
 

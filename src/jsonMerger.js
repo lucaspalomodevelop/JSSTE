@@ -1,3 +1,9 @@
+/**
+ * merge two JSONs
+ * @param {*} org 
+ * @param {*} ext 
+ * @returns 
+ */
 function mergeJson(org, ext) {
 
   if (!(typeof org === 'object' && org !== null)) {
@@ -27,6 +33,12 @@ function mergeJson(org, ext) {
   return org;
 }
 
+/**
+ * Merge multiple JSONs
+ * @param {*} org 
+ * @param  {...any} ext 
+ * @returns 
+ */
 function mergeJsons(org, ...ext) {
   ext.forEach((element) => {
     org = mergeJson(org, element);
