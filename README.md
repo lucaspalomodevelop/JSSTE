@@ -72,6 +72,16 @@ let result = Jsste.render(pagecode, templatecode);
 - `_TEMPLATE_` -> Defines the path to the temp file
 - `_STYLES_` -> Defines a list of CSS files that will be implemented
 
+### States-Codes
+
+| Code | Meaning |
+| :--- | :-----: |
+| 0    |   OK    |
+| 1    |  ERROR  |
+| 2    | WARNING |
+| 3    |  INFO   |
+| 4    |  DEBUG  |
+
 #### Example
 
 ```javascript
