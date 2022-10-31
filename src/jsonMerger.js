@@ -1,12 +1,10 @@
-const checker = require("typechecker");
-
 function mergeJson(org, ext) {
   // let placeholder = undefined;
 
-  if (!checker.isObject(org)) {
+  if (!(typeof org === 'object' && org !== null)) {
     org = JSON.parse(org);
   }
-  if (!checker.isObject(ext)) {
+  if (!(typeof ext === 'object' && ext !== null)) {
     ext = JSON.parse(ext);
   }
 
