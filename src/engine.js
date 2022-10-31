@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const jsonmerger = require("./jsonMerger");
-//let appdir = path.join(__dirname, "..");
 let app = {};
 
 app.__config = require("./config");
@@ -25,9 +24,6 @@ app.CONST = function (pagecode, constant, callback) {
 };
 
 app.render = function (pagecode, templatecode) {
-  //let result = "";
-
-  //if (!pagecode == JSON) pagecode = JSON.parse(pagecode);
   app.setState({ status: 0, statusMSG: "Render Page" });
   if (
     (pagecode != null || pagecode != undefined) &&
@@ -41,7 +37,6 @@ app.render = function (pagecode, templatecode) {
     app.setState({ status: 1, statusMSG: "Pagecode is undefined" });
   }
 
-  //TODO
   if (!templatecode) {
     try {
       app.setState({ status: 0, statusMSG: "Load Templatecode" });
@@ -65,8 +60,6 @@ app.render = function (pagecode, templatecode) {
         let importPath = importName.startsWith(".")
           ? path.join(_pagecode["_SELFPATH_"].toString(), importName.toString())
           : path.join(app.config.pagePath, importName);
-        // console.log(importPath);
-        // console.log(_pagecode);
         try {
           importCodeString = fs.readFileSync(importPath, "utf-8");
         } catch (error) {
@@ -84,8 +77,6 @@ app.render = function (pagecode, templatecode) {
 
     recursive(imports);
 
-    //console.log(ImportSet);
-
     let currentPagecode = _pagecode;
 
     ImportSet.forEach(function (importPath) {
@@ -98,9 +89,8 @@ app.render = function (pagecode, templatecode) {
     pagecode = currentPagecode;
   };
 
-  //TODO Killed Root Import
   app.CONST(pagecode, "_IMPORTS_", DissolveImports);
-  //console.log(pagecode);
+
   app.CONST(pagecode, "_STYLES_", (pagecode, value) => {
     app.setState({ status: 0, statusMSG: "Import Styles" });
     let rex = /<head>(.|\n|\t|\r)*?<\/head>/;
@@ -111,9 +101,9 @@ app.render = function (pagecode, templatecode) {
     });
 
     header += "\n</head>";
-    // console.log(header);
+
     templatecode = templatecode.replace(/<head>(.|\n|\t|\r)*?<\/head>/, header);
-    //  replaceAll(templatecode,rex,value)
+
   });
 
   app.setState({ status: 0, statusMSG: "Set vars" });

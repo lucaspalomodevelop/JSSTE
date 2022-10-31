@@ -1,5 +1,4 @@
 function mergeJson(org, ext) {
-  // let placeholder = undefined;
 
   if (!(typeof org === 'object' && org !== null)) {
     org = JSON.parse(org);
