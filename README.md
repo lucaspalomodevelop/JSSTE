@@ -72,6 +72,27 @@ let result = Jsste.render(pagecode, templatecode);
 - `_TEMPLATE_` -> Defines the path to the temp file
 - `_STYLES_` -> Defines a list of CSS files that will be implemented
 
+### Include States
+
+You can include an Callbackfunction that will be called when the state is change
+
+```javascript
+jsste.setStateFunction(({ status, statusMSG }) => {
+  yourstatus = status;
+  yourstatusMSG = statusMSG;
+});
+```
+
+### States-Codes
+
+| Code | Meaning |
+| :--- | :-----: |
+| 0    |   OK    |
+| 1    |  ERROR  |
+| 2    | WARNING |
+| 3    |  INFO   |
+| 4    |  DEBUG  |
+
 #### Example
 
 ```javascript

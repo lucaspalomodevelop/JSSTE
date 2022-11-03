@@ -6,14 +6,27 @@ let configvar = {
   stylesheets: __dirname + "\\src\\styles",
 };
 
+/**
+ * get config var by key
+ * @param {*} key 
+ * @returns 
+ */
 config.get = function (key) {
   return configvar[key];
 };
 
+/**
+ * get full config
+ * @returns 
+ */
 config.getConfig = function () {
   return configvar;
 };
 
+/**
+ * set full config
+ * @param {*} param0 
+ */
 config.setConfig = function ({
   templatePath,
   pagePath,
@@ -26,6 +39,11 @@ config.setConfig = function ({
   configvar.stylesheets = stylesheets;
 };
 
+/**
+ * set config via key
+ * @param {*} key 
+ * @param {*} value 
+ */
 config.set = function (key, value) {
   configvar[key] = value;
 };

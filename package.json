@@ -1,7 +1,7 @@
 {
   "name": "jsste",
-  "version": "1.2.0",
-  "description": "A Javascript Static Template Emgine",
+  "version": "1.2.1",
+  "description": "A Javascript Static Template Engine",
   "main": "src/index.js",
   "directories": {
     "test": "test"
@@ -14,8 +14,7 @@
   ],
   "scripts": {
     "test": "mocha ./test/test.test.js",
-    "publish": "npm publish --access publish",
-    "compile": "tsc"
+    "publish": "npm publish --access publish"
   },
   "repository": {
     "type": "git",
@@ -23,16 +22,16 @@
   },
   "keywords": [
     "engine",
-    "templateengine"
+    "templateengine",
+    "jsste"
   ],
-  "author": "lucas palomo",
+  "author": "Lucas Palomo Lauterbach",
   "license": "GPL",
   "bugs": {
     "url": "https://github.com/lucaspalomodevelop/JSSTE/issues"
   },
   "homepage": "https://github.com/lucaspalomodevelop/JSSTE#readme",
   "dependencies": {
-    "typechecker": "^7.18.0"
   },
   "engines": {
     "node": ">= 0.10.0"
@@ -40,12 +39,6 @@
   "devDependencies": {
     "assert": "^2.0.0",
     "chai": "^4.3.4",
-    "express": "^4.17.1",
-    "gulp": "^4.0.2",
-    "gulp-minify": "^3.1.0",
-    "gulp-typescript": "^6.0.0-alpha.1",
-    "mocha": "^8.4.0",
-    "typescript": "^4.5.4",
-    "urldecode": "^1.0.1"
+    "mocha": "^8.4.0"
   }
 }

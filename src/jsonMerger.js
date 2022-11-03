@@ -1,12 +1,15 @@
-const checker = require("typechecker");
-
+/**
+ * merge two JSONs
+ * @param {*} org 
+ * @param {*} ext 
+ * @returns 
+ */
 function mergeJson(org, ext) {
-  // let placeholder = undefined;
 
-  if (!checker.isObject(org)) {
+  if (!(typeof org === 'object' && org !== null)) {
     org = JSON.parse(org);
   }
-  if (!checker.isObject(ext)) {
+  if (!(typeof ext === 'object' && ext !== null)) {
     ext = JSON.parse(ext);
   }
 
@@ -30,6 +33,12 @@ function mergeJson(org, ext) {
   return org;
 }
 
+/**
+ * Merge multiple JSONs
+ * @param {*} org 
+ * @param  {...any} ext 
+ * @returns 
+ */
 function mergeJsons(org, ...ext) {
   ext.forEach((element) => {
     org = mergeJson(org, element);
