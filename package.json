@@ -36,7 +36,6 @@
     "node": ">= 0.10.0"
   },
   "devDependencies": {
-    "assert": "^2.0.0",
     "chai": "^4.3.4",
     "mocha": "^8.4.0"
   }

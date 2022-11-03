@@ -12,11 +12,11 @@ app.CONST = engine.CONST;
  * @returns 
  */
 app.renderFile = (filePath) => {
-  this.setState({ status: 0, statusMSG: "read file" });
+  app.setState({ status: 0, statusMSG: "read file" });
   let file = fs.readFileSync(filePath, "utf8");
-  this.setState({ status: 0, statusMSG: "parse file" });
+  app.setState({ status: 0, statusMSG: "parse file" });
   file = JSON.parse(file);
-  this.setState({ status: 0, statusMSG: "set Selfpath" });
+  app.setState({ status: 0, statusMSG: "set Selfpath" });
   file["_SELFPATH_"] = path.dirname(filePath);
   return engine.render(file);
 };
@@ -37,8 +37,8 @@ app.setState = ({ status, statusMSG }) => {
  */
 app.setStateFunction = function (callback) {
   app.stateCallback = callback;
-  this.setState({ status: 0, statusMSG: "set Statefunction" });
-  this.setState({ status: 0, statusMSG: "JSSTE is ready" });
+  app.setState({ status: 0, statusMSG: "set Statefunction" });
+  app.setState({ status: 0, statusMSG: "JSSTE is ready" });
 };
 
 app.__config = require("./config");
