@@ -6,6 +6,12 @@ var app = {};
 
 app.render = engine.render;
 app.CONST = engine.CONST;
+
+let pj = require("../package.json")
+
+app.info = {};
+app.info["version"] = pj.version
+app.info["license"] = pj.license
 /**
  * Render File
  * @param {*} filePath 
