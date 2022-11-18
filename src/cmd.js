@@ -46,6 +46,22 @@ addCommand({prefix:"-temp="},(arg) =>{
 
 output = jsste.render(pagefile || undefined, tempfile || undefined)
 
+addCommand({prefix:"-info"},(arg) =>{
+
+    if(arg == "?json")
+    {
+        console.log(JSON.stringify(jsste.info))
+    }
+    else{
+        Object.keys(jsste.info).forEach((key)=>{
+            console.log(key + " : " + jsste.info[key] )
+        })
+    }
+})
+
+
+
+
 addCommand({prefix:"-out"},(arg) =>{
     console.log(output)
 })
