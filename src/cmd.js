@@ -59,9 +59,6 @@ addCommand({prefix:"-info"},(arg) =>{
     }
 })
 
-
-
-
 addCommand({prefix:"-out"},(arg) =>{
     console.log(output)
 })

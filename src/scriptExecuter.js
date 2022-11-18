@@ -38,11 +38,7 @@ function exec(script) {
 
   script = script.replace("//[jsste_info]",`let jsste_input_file = ${JSON.stringify(require("./index").info)}`),
 
-  // console.log(`a: }`)
-
   script += "\n return outString;";
-
-  // console.log(script)
 
   try {
     let F = new Function(script);
