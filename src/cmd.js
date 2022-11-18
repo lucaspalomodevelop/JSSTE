@@ -4,8 +4,6 @@ let output = "";
 let pagefile, tempfile;
 let fs = require("fs");
 
-
-
 let addCommand = ({prefix,args = myargs}, callback) =>
 {
     myargs.forEach((elem) =>{
@@ -28,14 +26,15 @@ addCommand({prefix:"-Jsconfig="},(arg) =>{
 })
 
 addCommand({prefix:"-page="},(arg) =>{
-    pagefile = JSON.parse(fs.readFileSync(arg,"utf-8").toString())
+
+    pagefile = arg
 })
 
 addCommand({prefix:"-temp="},(arg) =>{
-    tempfile  = fs.readFileSync(arg, "utf-8").toString()
+    tempfile  = arg
 })
 
-output = jsste.render(pagefile || undefined, tempfile || undefined)
+output = jsste.renderFile(pagefile || undefined, tempfile || undefined)
 
 addCommand({prefix:"-out"},(arg) =>{
     console.log(output)
