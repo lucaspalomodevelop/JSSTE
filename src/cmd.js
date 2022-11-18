@@ -2,6 +2,7 @@ let jsste = require("./index");
 let myargs = process.argv.slice(2);
 let output = "";
 let pagefile, tempfile;
+let path = require("path");
 let fs = require("fs");
 
 let addCommand = ({prefix,args = myargs}, callback) =>
@@ -25,16 +26,25 @@ addCommand({prefix:"-Jsconfig="},(arg) =>{
     jsste.__config.setConfig(arg);
 })
 
+addCommand({prefix:"-pageFile="},(arg) =>{
+    pagefile = JSON.parse(fs.readFileSync(arg, "utf8"));
+    pagefile["_SELFPATH_"] = path.dirname(arg);
+})
 addCommand({prefix:"-page="},(arg) =>{
 
-    pagefile = arg
+    pagefile = JSON.parse(arg);
+    pagefile["_SELFPATH_"] = path.dirname(arg);
+})
+
+addCommand({prefix:"-tempFile="},(arg) =>{
+    tempfile  = fs.readFileSync(arg, "utf8");
 })
 
 addCommand({prefix:"-temp="},(arg) =>{
     tempfile  = arg
 })
 
-output = jsste.renderFile(pagefile || undefined, tempfile || undefined)
+output = jsste.render(pagefile || undefined, tempfile || undefined)
 
 addCommand({prefix:"-out"},(arg) =>{
     console.log(output)
