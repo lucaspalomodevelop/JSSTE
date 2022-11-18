@@ -62,6 +62,7 @@ app.render = function (pagecode, templatecode) {
   if (!templatecode) {
     try {
       app.setState({ status: 0, statusMSG: "Load Templatecode" });
+      console.log(app.config.templatePath)
       templatecode = fs.readFileSync(
         path.join(app.config.templatePath, pagecode["_TEMPLATE_"] + ".tjsste"),
         "utf-8"

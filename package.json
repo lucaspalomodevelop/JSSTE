@@ -14,7 +14,8 @@
   ],
   "scripts": {
     "test": "mocha ./test/test.test.js",
-    "publish": "npm publish --access publish"
+    "publish": "npm publish --access publish",
+    "cmd": "node ./src/cmd.js"
   },
   "repository": {
     "type": "git",
