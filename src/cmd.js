@@ -17,6 +17,9 @@ let addCommand = ({prefix,args = myargs}, callback) =>
     })
 }
 
+addCommand({prefix:"-Jsconfig="},(arg) =>{
+    jsste.__config.setConfig(arg);
+})
 
 addCommand({prefix:"-page="},(arg) =>{
     
