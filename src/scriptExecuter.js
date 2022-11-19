@@ -3,6 +3,16 @@
  */
 function Added() {
   let outString = "";
+  
+  //[jsste_info]
+
+  function jsste_info()
+  {
+    let jssteinfo = jsste_input_file
+    result = `\tINFOS\n\t${Object.keys(jssteinfo).map((key) => key + " : " + jssteinfo[key] ).join("\n\t") }`
+
+    return result;
+  }
 
   function out(arg) {
     outString += arg;
@@ -25,6 +35,8 @@ function exec(script) {
     Added.toString().replace(/^function\s*\S+\s*\([^)]*\)\s*\{|\}$/g, ""),
     script
   );
+
+  script = script.replace("//[jsste_info]",`let jsste_input_file = ${JSON.stringify(require("./index").info)}`),
 
   script += "\n return outString;";
 

@@ -6,19 +6,27 @@ var app = {};
 
 app.render = engine.render;
 app.CONST = engine.CONST;
+
+let pj = require("../package.json")
+
+app.info = {};
+app.info["version"] = pj.version
+app.info["license"] = pj.license
 /**
  * Render File
  * @param {*} filePath 
  * @returns 
  */
-app.renderFile = (filePath) => {
+app.renderFile = (filePath, templatePath) => {
   app.setState({ status: 0, statusMSG: "read file" });
   let file = fs.readFileSync(filePath, "utf8");
   app.setState({ status: 0, statusMSG: "parse file" });
   file = JSON.parse(file);
+  app.setState({ status: 0, statusMSG: "read template" });
+  let temp = fs.readFileSync(templatePath, "utf8");
   app.setState({ status: 0, statusMSG: "set Selfpath" });
   file["_SELFPATH_"] = path.dirname(filePath);
-  return engine.render(file);
+  return engine.render(file,temp);
 };
 
 /**

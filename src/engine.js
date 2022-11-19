@@ -56,7 +56,14 @@ app.render = function (pagecode, templatecode) {
     pagecode = JSON.parse(pagecode);
     app.setState({ status: 0, statusMSG: "Parse Pagecode" });
   } else {
-    app.setState({ status: 1, statusMSG: "Pagecode is undefined" });
+    if(typeof pagecode === "object")
+     {
+      app.setState({ status: 0, statusMSG: "Pagecode is an object" });
+     }
+     else{
+      app.setState({ status: 1, statusMSG: "Pagecode is undefined" });
+     }
+   
   }
 
   if (!templatecode) {
