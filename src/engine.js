@@ -27,7 +27,7 @@ function replaceAll(str, find, replace) {
 }
 
 /**
- * function to handle consts 
+ * function to handle consts
  * @param {*} pagecode
  * @param {*} constant
  * @param {*} callback
@@ -56,20 +56,23 @@ app.render = function (pagecode, templatecode) {
     pagecode = JSON.parse(pagecode);
     app.setState({ status: 0, statusMSG: "Parse Pagecode" });
   } else {
-    if(typeof pagecode === "object")
-     {
+    if (typeof pagecode === "object") {
       app.setState({ status: 0, statusMSG: "Pagecode is an object" });
-     }
-     else{
+    } else {
       app.setState({ status: 1, statusMSG: "Pagecode is undefined" });
-     }
-   
+    }
   }
 
   if (!templatecode) {
     try {
       app.setState({ status: 0, statusMSG: "Load Templatecode" });
-      console.log(app.config.templatePath)
+      app.setState({
+        status: 4,
+        statusMSG: path.join(
+          app.config.templatePath,
+          pagecode["_TEMPLATE_"] + ".tjsste"
+        ),
+      });
       templatecode = fs.readFileSync(
         path.join(app.config.templatePath, pagecode["_TEMPLATE_"] + ".tjsste"),
         "utf-8"
@@ -124,10 +127,10 @@ app.render = function (pagecode, templatecode) {
     pagecode = currentPagecode;
   };
 
-  // Handle _IMPORTS_ const 
+  // Handle _IMPORTS_ const
   app.CONST(pagecode, "_IMPORTS_", DissolveImports);
 
-  // Handle _STYLES_ const 
+  // Handle _STYLES_ const
   app.CONST(pagecode, "_STYLES_", (pagecode, value) => {
     app.setState({ status: 0, statusMSG: "Import Styles" });
     let rex = /<head>(.|\n|\t|\r)*?<\/head>/;
