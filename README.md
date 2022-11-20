@@ -93,6 +93,19 @@ jsste.setStateFunction(({ status, statusMSG }) => {
 | 3    |  INFO   |
 | 4    |  DEBUG  |
 
+## Commandline
+
+| Code       |                 Meaning                  | Example |
+| :--------- | :--------------------------------------: | :-----: |
+| -log       |              show jsste log              |         |
+| -Jsconfig= |         set jsste config as json         |         |
+| -pageFile= |            set pageFile path             |         |
+| -page=     |           set pageFile as json           |         |
+| -tempFile= |            set tempFile path             |         |
+| -temp=     |           set pageFile as code           |         |
+| -info      |             show jsste.info              |         |
+| -out       | write rendered code into the commandling |         |
+
 #### Example
 
 ```javascript
