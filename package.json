@@ -6,6 +6,9 @@
   "directories": {
     "test": "test"
   },
+  "bin": {
+    "jsste": "./src/cmd.js"
+},
   "files": [
     "src",
     "package.json",
