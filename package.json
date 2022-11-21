@@ -6,6 +6,9 @@
   "directories": {
     "test": "test"
   },
+  "bin": {
+    "jsste": "./src/cli.js"
+},
   "files": [
     "src",
     "package.json",
@@ -15,7 +18,7 @@
   "scripts": {
     "test": "mocha ./test/test.test.js",
     "publish": "npm publish --access publish",
-    "cmd": "node ./src/cmd.js"
+    "cmd": "node ./src/cli.js"
   },
   "repository": {
     "type": "git",
