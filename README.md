@@ -95,7 +95,25 @@ jsste.setStateFunction(({ status, statusMSG }) => {
 
 ## Commandline
 
-| Code       |                 Meaning                  | Example |
+## Installation
+
+```sh
+npm install jsste -g
+```
+
+or
+
+```sh
+yarn install jsste -g
+```
+
+## excuting
+
+```sh
+jsste <argument>
+```
+
+| arguemnt   |               description                | Example |
 | :--------- | :--------------------------------------: | :-----: |
 | -log       |              show jsste log              |         |
 | -Jsconfig= |         set jsste config as json         |         |
