@@ -1,6 +1,6 @@
 {
   "name": "jsste",
-  "version": "1.2.3",
+  "version": "1.3.2",
   "description": "A Javascript Static Template Engine",
   "main": "src/index.js",
   "directories": {
