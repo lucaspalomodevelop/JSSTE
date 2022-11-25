@@ -7,31 +7,36 @@ var app = {};
 app.render = engine.render;
 app.CONST = engine.CONST;
 
-let pj = require("../package.json")
+let pj = require("../package.json");
 
 app.info = {};
-app.info["version"] = pj.version
-app.info["license"] = pj.license
+app.info["version"] = pj.version;
+app.info["license"] = pj.license;
 /**
  * Render File
- * @param {*} filePath 
- * @returns 
+ * @param {*} filePath
+ * @returns
  */
 app.renderFile = (filePath, templatePath) => {
   app.setState({ status: 0, statusMSG: "read file" });
   let file = fs.readFileSync(filePath, "utf8");
   app.setState({ status: 0, statusMSG: "parse file" });
   file = JSON.parse(file);
-  app.setState({ status: 0, statusMSG: "read template" });
-  let temp = fs.readFileSync(templatePath, "utf8");
   app.setState({ status: 0, statusMSG: "set Selfpath" });
   file["_SELFPATH_"] = path.dirname(filePath);
-  return engine.render(file,temp);
+
+  if (!(templatePath == undefined)) {
+    app.setState({ status: 0, statusMSG: "read template" });
+    let temp = fs.readFileSync(templatePath, "utf8");
+    return engine.render(file, temp);
+  } else {
+    return engine.render(file);
+  }
 };
 
 /**
  * set State
- * @param {*} param0 
+ * @param {*} param0
  */
 app.setState = ({ status, statusMSG }) => {
   if (app.stateCallback != undefined) {
@@ -41,7 +46,7 @@ app.setState = ({ status, statusMSG }) => {
 
 /**
  * Set function that would called by new state
- * @param {*} callback 
+ * @param {*} callback
  */
 app.setStateFunction = function (callback) {
   app.stateCallback = callback;
@@ -53,6 +58,5 @@ app.__config = require("./config");
 app.config = app.__config.getConfig();
 engine.log = app.log;
 engine.setState = app.setState;
-
 
 module.exports = app;
